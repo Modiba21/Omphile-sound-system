@@ -1,0 +1,309 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Omphile's Sound System</title>
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+
+<style>
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: 'Segoe UI', sans-serif;
+}
+
+body {
+  background: #050814;
+  color: white;
+}
+
+/* HEADER */
+header {
+  padding: 20px;
+  text-align: center;
+  background: rgba(0,0,0,0.6);
+  backdrop-filter: blur(10px);
+  position: sticky;
+  top: 0;
+}
+
+header h1 {
+  color: #22c55e;
+  letter-spacing: 2px;
+}
+
+/* HERO */
+.hero {
+  height: 80vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  background: linear-gradient(rgba(0,0,0,0.6), rgba(0,0,0,0.8)),
+  url("images/Sound1.jpeg");
+  background-size: cover;
+  background-position: center;
+}
+
+.hero h2 {
+  font-size: 3rem;
+}
+
+.hero p {
+  color: #cbd5f5;
+  margin-top: 10px;
+}
+
+/* PRODUCTS */
+.products {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 25px;
+  padding: 50px;
+}
+
+/* CARD */
+.card {
+  height: 400px;
+  border-radius: 15px;
+  position: relative;
+  overflow: hidden;
+  cursor: pointer;
+  transition: 0.4s;
+}
+
+.card:hover {
+  transform: scale(1.05);
+}
+
+/* OVERLAY */
+.card::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: rgba(0,0,0,0.5);
+}
+
+/* CONTENT */
+.card-content {
+  position: absolute;
+  bottom: 20px;
+  left: 20px;
+  z-index: 2;
+}
+
+.card h2 {
+  margin-bottom: 5px;
+}
+
+.card button {
+  margin-top: 10px;
+  padding: 10px 15px;
+  border: none;
+  background: #22c55e;
+  color: black;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+/* BACKGROUNDS */
+.basic {
+  background: url("images/Sound1.jpeg");
+  background-size: cover;
+  background-position: center;
+}
+
+.pro {
+  background: url("images/Sound3.jpeg");
+  background-size: cover;
+  background-position: center;
+}
+
+.premium {
+  background: url("images/sound2.jpeg");
+  background-size: cover;
+  background-position: center;
+}
+
+/* BOOKING */
+.booking {
+  padding: 50px;
+  background: rgba(0,0,0,0.8);
+  backdrop-filter: blur(10px);
+}
+
+.booking h2 {
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+form {
+  max-width: 500px;
+  margin: auto;
+}
+
+input, select, textarea {
+  width: 100%;
+  padding: 12px;
+  margin: 10px 0;
+  border: none;
+  border-radius: 5px;
+  background: #1e293b;
+  color: white;
+}
+
+button.submit-btn {
+  width: 100%;
+  padding: 14px;
+  background: linear-gradient(45deg, #22c55e, #16a34a);
+  border: none;
+  color: black;
+  font-size: 16px;
+  cursor: pointer;
+  border-radius: 5px;
+  transition: 0.3s;
+}
+
+button.submit-btn:hover {
+  opacity: 0.8;
+}
+
+/* WHATSAPP */
+.whatsapp-float {
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  background: #25d366;
+  color: white;
+  padding: 15px;
+  border-radius: 50%;
+  font-size: 24px;
+  text-decoration: none;
+  box-shadow: 0 0 15px rgba(0,0,0,0.4);
+}
+</style>
+</head>
+
+<body>
+
+<header>
+  <h1>🎧 Omphile's Sound Systems</h1>
+</header>
+
+<section class="hero">
+  <div>
+    <h2>Premium Sound Experience</h2>
+    <p>Book the perfect system for your event</p>
+  </div>
+</section>
+
+<section class="products">
+
+  <div class="card basic">
+    <div class="card-content">
+      <h2>Basic Sound System</h2>
+      <p>Small events</p>
+      <button onclick="selectSystem('Basic Sound System')">Book</button>
+    </div>
+  </div>
+
+  <div class="card pro">
+    <div class="card-content">
+      <h2>Pro Sound System</h2>
+      <p>Medium events & parties</p>
+      <button onclick="selectSystem('Pro Sound System')">Book</button>
+    </div>
+  </div>
+
+  <div class="card premium">
+    <div class="card-content">
+      <h2>Premium Sound System</h2>
+      <p>Concert-level power</p>
+      <button onclick="selectSystem('Premium Sound System')">Book</button>
+    </div>
+  </div>
+
+</section>
+
+<section class="booking">
+  <h2>📅 Book Now</h2>
+
+  <form>
+    <input type="text" id="name" placeholder="Your Name" required>
+    <input type="text" id="phone" placeholder="Phone Number" required>
+
+    <select id="system">
+      <option>Basic Sound System</option>
+      <option>Pro Sound System</option>
+      <option>Premium Sound System</option>
+    </select>
+
+    <input type="date" id="date" required>
+    <input type="text" id="location" placeholder="Event Location" required>
+    <textarea id="message" placeholder="Extra details"></textarea>
+
+    <button type="button" class="submit-btn" onclick="sendWhatsApp()">
+      📲 Book via WhatsApp
+    </button>
+  </form>
+</section>
+
+<a class="whatsapp-float" id="whatsappBtn" target="_blank">
+  <i class="fab fa-whatsapp"></i>
+</a>
+
+<script>
+function selectSystem(system) {
+  document.getElementById("system").value = system;
+  window.scrollTo({ top: document.querySelector('.booking').offsetTop, behavior: 'smooth' });
+}
+
+function sendWhatsApp() {
+  let name = document.getElementById("name").value;
+  let phone = document.getElementById("phone").value;
+  let system = document.getElementById("system").value;
+  let date = document.getElementById("date").value;
+  let location = document.getElementById("location").value;
+  let message = document.getElementById("message").value;
+
+  let text = `Hello, I want to book:%0A
+Name: ${name}%0A
+Phone: ${phone}%0A
+System: ${system}%0A
+Date: ${date}%0A
+Location: ${location}%0A
+Details: ${message}`;
+
+  let number = "27712345678"; // 🔴 Change to your number
+
+  window.open(`https://wa.me/${number}?text=${text}`, "_blank");
+}
+
+document.getElementById("whatsappBtn").href =
+  "https://wa.me/27606843427?text=Hello%20I%20want%20to%20book%20a%20sound%20system";
+</script>
+
+</body>
+<meta charset="UTF-8">
+</style></head>
+<body><nav>
+  <h2>🎧 Omphile Sounds</h2>
+  <div>
+  </div>
+</nav><div class="container">
+  <h1>About Us</h1>
+  <p>
+    Omphile's Sounds, a crystal-clear deep bass was founded in 2024. We specialize in providing high-quality sound systems 
+    for weddings, parties, corporate events, and live shows. Our mission is to deliver powerful, 
+    crystal-clear audio experiences that elevate every event.Book us now and and turn your party into full experience
+  </div>  <!-- SOCIAL ICONS -->  <div class="socials">
+    <i class="fab fa-facebook"></i>
+    <i class="fab fa-instagram"></i>
+    <i class="fab fa-tiktok"></i>
+    <i class="fab fa-whatsapp"></i>
+
+</body>
+</html>
